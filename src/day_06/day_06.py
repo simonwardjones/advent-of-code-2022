@@ -1,6 +1,5 @@
 import pathlib
 import re
-from queue import LifoQueue
 
 
 def load_data():
