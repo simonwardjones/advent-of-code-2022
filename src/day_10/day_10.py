@@ -9,12 +9,12 @@ def load_data():
 
 def part_one():
     elf_data = [row.split(" ") for row in load_data().split("\n")]
-    register = [1]
+    register = [0, 1]
     for instruction in elf_data:
         register.append(register[-1])
         if instruction[0] == "addx":
             register.append(register[-1] + int(instruction[1]))
-    print(sum(starmap(mul, islice(zip(count(1), register), 19, None, 40))))
+    print(sum(starmap(mul, islice(enumerate(register), 20, None, 40))))
 
 
 def part_two():
@@ -28,12 +28,12 @@ def part_two():
     out = [[" "] * 40 for _ in range(6)]
     for i, s in enumerate(sprites[:-1]):
         row, col = i // 40, i % 40
-        print(row, col, i, s)
         out[row][col] = "#" if abs(col - s) < 2 else "."
     print("\n".join("".join(row) for row in out))
 
+
 def main():
-    # part_one()
+    part_one()
     part_two()
 
 
